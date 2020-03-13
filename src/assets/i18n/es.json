@@ -1,0 +1,18 @@
+{
+    "Language":"Idioma",
+    "Login":{
+        "email":"correo electrónico",
+        "emailValidation1":"correo electronico es requerido",
+        "emailValidation2":"El correo electrónico debe ser una cuenta de correo electrónico válida",
+        "password":"Contraseña",
+        "passwordValidation1":"se requiere contraseña",
+        "passwordValidation2":"La contraseña debe tener al menos 8 caracteres",
+        "name":"Nombre",
+        "nameValidation":"Se requiere el nombre",
+        "remember":"Recuérdame",
+        "loginBtn":"Iniciar sesión",
+        "haveAccount":"Tener una cuenta?",
+        "register":"Registrarse",
+        "forgetPassword":"Se te olvidó tu contraseña"
+    }
+}

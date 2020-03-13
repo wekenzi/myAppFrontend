@@ -1,0 +1,18 @@
+{
+    "Language":"la langue",
+    "Login":{
+        "email":"Email",
+        "emailValidation1":"Email est requis",
+        "emailValidation2":"L'email doit être un compte email valide",
+        "password":"Mot de passe",
+        "passwordValidation1":"Mot de passe requis",
+        "passwordValidation2":"Mot de passe doit être d'au moins 8 caractères",
+        "name":"Nom",
+        "nameValidation":"Le nom est requis",
+        "remember":"Souviens-toi de moi",
+        "loginBtn":"S'identifier",
+        "haveAccount":"avoir un compte?",
+        "register":"S'inscrire",
+        "forgetPassword":"Mot de passe oublié"
+    }
+}

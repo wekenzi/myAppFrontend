@@ -1,0 +1,35 @@
+.page-header{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 400;
+    padding: 15px;
+}
+.page-header h2{
+    font-weight: 400;
+    font-size: 30px;
+}
+.search-container{
+    padding: 15px;
+}
+.search-container .form-control{
+    height: calc(1.5em + .75rem + 10px);
+}
+.emp-menu-btn{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+.selecet-close{
+    position: absolute;
+    bottom: -8px;
+    right: 15px;
+    display: none;
+}
+.selecet-close-text{
+    display: none;
+}
+.submit-btn{
+    font-size: 16px;
+    padding: 3px 30px;
+}

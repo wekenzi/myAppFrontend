@@ -1,0 +1,144 @@
+<div class="page-content">
+  <!-- List -->
+  <div class="list" *ngIf="listShow">
+    <div class="page-header">
+      <h2 class="m-0">Payments List</h2>
+      <button mat-raised-button class="d-none d-md-block px-5" color="primary" (click)="addPayment()">Add Payment</button>
+      <button mat-mini-fab class="d-md-none" color="primary" (click)="addPayment()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div class="search-container">
+      <input class="form-control" type="text" placeholder="search" [(ngModel)]="searchFilter">
+    </div>
+    <!-- Loading Overlay -->
+    <app-loadingoverlay *ngIf="loadingOverlay"></app-loadingoverlay>
+    <!-- ================ -->
+    <!-- No Data Message -->
+    <app-nodata *ngIf="!loadingOverlay && payments.length == 0"></app-nodata>
+    <!-- ================ -->
+    <div class="content" *ngIf="!loadingOverlay && payments.length > 0">
+      <div class="row no-gutters">
+        <div class="col-xl-6" *ngFor="let payment of payments | search:searchFilter">
+          <mat-card>
+            <mat-card-content>
+              <div class="row no-gutters">
+                <div class="col-6">
+                  <div class="d-sm-flex align-items-center">
+                    <mat-card-title class="mb-0">{{ payment.name }}</mat-card-title>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <mat-card-subtitle class="m-0 h-100 d-flex justify-content-end emps-badge">
+                      <mat-chip-list><mat-chip class="emps" color="primary" selected>{{ payment.freelancers.length  }} Freelancers</mat-chip></mat-chip-list> 
+                  </mat-card-subtitle>
+                </div>
+              </div>
+              <button class="emp-menu-btn" mat-icon-button [matMenuTriggerFor]="paymentMenu">
+                <mat-icon>menu</mat-icon>
+              </button>
+              <mat-menu xPosition='before' #paymentMenu="matMenu">
+                <button mat-menu-item class="pr-5" (click)="editItem(payment._id)">
+                  <mat-icon>edit</mat-icon>
+                  <span>Edit</span>
+                </button>
+                <button mat-menu-item class="pr-5 text-danger" (click)="deleteItem(payment._id)">
+                  <mat-icon class="text-danger">delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+              <hr class="my-1">
+              <div class="d-flex justify-content-between mt-2">
+                <p class="m-0">
+                  {{ payment.value }}
+                  <span *ngIf="currenciesList.length>0"> {{ getCurrencyName(payment.currency) }}</span>
+                </p>
+               <p class="m-0 emps-badge">{{ payment.date | date: 'dd/MM/yyyy'}}</p>
+              </div>
+            </mat-card-content>  
+          </mat-card>
+        </div>
+      </div>  
+    </div>
+  </div>
+  <!-- =========== -->
+  <div class="operations" *ngIf="!listShow">
+    <div class="page-header">
+      <h2 class="m-0">Add payment</h2>
+      <button mat-raised-button class="d-none d-md-block px-5" color="primary" (click)="backToList()">Back to list</button>
+      <button mat-mini-fab class="d-md-none" color="primary" (click)="backToList()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+    <!-- Loading Overlay -->
+    <app-loadingoverlay *ngIf="loadingOverlay"></app-loadingoverlay>
+    <!-- ================ -->
+    <div class="content" *ngIf="currentPayment && !loadingOverlay">
+      <mat-card>
+        <mat-card-content>
+          <!-- Form Add , Edit -->
+          <div class="form">
+            <div class="row">
+              <div class="form-group col-sm-6">
+                <mat-form-field class="w-100">
+                  <input matInput placeholder="Payment name" autocomplete="off" (keyup)="nameError=false;" [(ngModel)]="currentPayment.name">
+                  <button mat-button class="selecet-close-text" *ngIf="currentPayment.name" matSuffix mat-icon-button aria-label="Clear" (click)="currentPayment.name=null">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+                <span class="text-danger" *ngIf="nameError">Please type name</span>
+              </div>
+              <div class="form-group col-sm-6 text-center">
+                <div class="d-flex mb-2">
+                  <button 
+                    class="m-auto mb-2" mat-raised-button color="primary"
+                    matBadge="{{currentPayment.freelancers.length}}" matBadgePosition="after" matBadgeColor="warn" 
+                    [matBadgeHidden]="false" (click)="openFreelancersModal()">
+                    Assign Freelancers
+                  </button>
+                </div>
+                <span class="text-danger" *ngIf="freelancersError">Please choose freelancers</span>
+              </div>
+              <div class="form-group col-sm-4">
+                <mat-form-field class="w-100">
+                  <input matInput placeholder="Value" autocomplete="off" (keyup)="valueError=false;" (keypress)="onlyNumbers($event)" [(ngModel)]="currentPayment.value">
+                  <button mat-button class="selecet-close-text" *ngIf="currentPayment.value" matSuffix mat-icon-button aria-label="Clear" (click)="currentPayment.value=null">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+                <span class="text-danger" *ngIf="valueError">Please type value</span>
+              </div>
+              <div class="form-group col-sm-4">
+                <mat-form-field class="w-100">
+                  <mat-label>Currency</mat-label>
+                  <mat-select [(ngModel)]="currentPayment.currency" (selectionChange)="currencyError=false;">
+                    <mat-option [value]="currency._id" *ngFor="let currency of currenciesList">
+                      {{ currency.name }}
+                    </mat-option>
+                  </mat-select>
+                  <button mat-button class="selecet-close" *ngIf="currentPayment.currency" matSuffix mat-icon-button aria-label="Clear" (click)="currentFreelancer.currency=null">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+                <span class="text-danger" *ngIf="currencyError">Please choose currency</span>
+              </div>
+              <div class="form-group col-sm-4">
+                <mat-form-field class="w-100">
+                  <input matInput [matDatepicker]="picker" (focus)="picker.open()" (dateChange)="dateError=false" autocomplete="off" placeholder="Date" [(ngModel)]="currentPayment.date">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <span class="text-danger" *ngIf="dateError">Please choose date</span>
+              </div>
+              <div class="form-group col-12 mt-5 text-center">
+                <button mat-raised-button class="submit-btn" color="primary" (click)="submitPayment()">Submit<mat-icon class="ml-2">send</mat-icon></button>
+              </div>
+            </div>
+          </div>
+          <!-- =============== -->
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <!-- ============ -->
+</div>

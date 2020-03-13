@@ -1,0 +1,18 @@
+{
+    "Language":"язык",
+    "Login":{
+        "email":"Эл. адрес",
+        "emailValidation1":"требуется электронная почта",
+        "emailValidation2":"адрес электронной почты должен быть действительным адресом электронной почты",
+        "password":"пароль",
+        "passwordValidation1":"Необходим пароль",
+        "passwordValidation2":"пароль должен быть не менее 8 символов",
+        "name":"название",
+        "nameValidation":"имя обязательно",
+        "remember":"Запомните меня",
+        "loginBtn":"Login",
+        "haveAccount":"Иметь аккаунт?",
+        "register":"регистр",
+        "forgetPassword":"забыл пароль"
+    }
+}

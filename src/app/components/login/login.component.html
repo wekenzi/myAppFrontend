@@ -1,0 +1,69 @@
+<div class="login-page">
+  <!-- Language Section -->
+  <div class="form-group login-box row no-gutters">
+    <label class="col-sm-6 col-form-label" for="lang">{{ 'Language' | translate }}</label>
+    <div class="col-sm-6">
+      <select #langselect [(ngModel)]="selectedLang" (change)="langChanged(langselect.value)" class="form-control" id="lang">
+        <option [value]="lang" *ngFor="let lang of translate.getLangs()">
+            {{ lang }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <!-- =============== -->
+  <!-- Login Box -->
+  <div class="login-box" [class.d-none]="showRegister">
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()" (keyup.enter)="onSubmitLogin()">
+          <mat-form-field class="d-block">
+            <input matInput placeholder="{{ 'Login.email' | translate }}" formControlName="email" autocomplete="off">
+              <mat-error *ngIf="f.email.errors && f.email.errors.required">{{ 'Login.emailValidation1' | translate }}</mat-error>
+              <mat-error *ngIf="f.email.errors && f.email.errors.email">{{ 'Login.emailValidation2' | translate }}</mat-error>
+          </mat-form-field>
+          <mat-form-field class="d-block">
+            <input matInput placeholder="{{ 'Login.password' | translate }}" type="password" formControlName="password" autocomplete="off">
+            <mat-error *ngIf="f.password.errors && f.password.errors.required">{{ 'Login.passwordValidation1' | translate }}</mat-error>
+            <mat-error *ngIf="f.password.errors && f.password.errors.minlength">{{ 'Login.passwordValidation2' | translate }}</mat-error>
+          </mat-form-field>
+        </form>
+        <mat-checkbox class="d-block mt-2" color="primary" [(ngModel)]="remember">{{ 'Login.remember' | translate }}</mat-checkbox>
+        <button class="btn-sub btn-block py-1" mat-raised-button color="primary" [disabled]="f.password.errors || f.email.errors" (click)="onSubmitLogin()">{{ 'Login.loginBtn' | translate }}</button>
+        <p class="d-flex justify-content-between m-0">
+          <span class="text-primary reg" (click)="showRegisterFunc()">{{ 'Login.register' | translate }}</span>
+          <span class="text-primary reg">{{ 'Login.forgetPassword' | translate }}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- ======= -->
+  <!-- Register Box -->
+  <div class="login-box" [class.d-none]="!showRegister">
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()" (keyup.enter)="onSubmitRegister()">
+          <mat-form-field class="d-block">
+            <input matInput placeholder="{{ 'Login.name' | translate }}" formControlName="regName" autocomplete="off">
+            <mat-error *ngIf="r.regName.errors && r.regName.errors.required">{{ 'Login.nameValidation' | translate }}</mat-error>
+          </mat-form-field>
+          <mat-form-field class="d-block">
+            <input matInput placeholder="{{ 'Login.email' | translate }}" formControlName="regEmail" autocomplete="off">
+            <mat-error *ngIf="r.regEmail.errors && r.regEmail.errors.required">{{ 'Login.emailValidation1' | translate }}</mat-error>
+            <mat-error *ngIf="r.regEmail.errors && r.regEmail.errors.email">{{ 'Login.emailValidation2' | translate }}</mat-error>
+          </mat-form-field>
+          <mat-form-field class="d-block">
+            <input matInput placeholder="{{ 'Login.password' | translate }}" type="password" formControlName="regPassword" autocomplete="off">
+            <mat-error *ngIf="r.regPassword.errors && r.regPassword.errors.required">{{ 'Login.passwordValidation1' | translate }}</mat-error>
+            <mat-error *ngIf="r.regPassword.errors && r.regPassword.errors.minlength">{{ 'Login.passwordValidation2' | translate }}</mat-error>
+          </mat-form-field>
+        </form>
+        <button class="btn-sub btn-block py-1" mat-raised-button color="primary" [disabled]="r.regPassword.errors || r.regEmail.errors" (click)="onSubmitRegister()">{{ 'Login.register' | translate }}</button>
+        <p class="d-flex justify-content-center m-0">
+          <span class="mr-1">{{ 'Login.haveAccount' | translate }}</span>
+          <span class="text-primary reg" (click)="showLoginFunc()">{{ 'Login.loginBtn' | translate }}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- ======= -->
+</div>

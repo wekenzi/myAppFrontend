@@ -1,0 +1,38 @@
+.head-dialog{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.head-dialog input{
+    flex: 1;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+.head-dialog span{
+    font-weight: bold;
+}
+.card:hover{
+    box-shadow: 0 3px 10px 3px #cccccc;
+}
+.selected-emp{
+    background-color: #d3d3d34d;
+}
+.check mat-icon{
+    font-size: 28px;
+    color: #1e88e5;
+}
+/* Responsive Media Query */
+@media all and (max-width: 575px){
+    .head-dialog{
+        flex-flow: column;
+    }
+    .head-dialog input{
+        flex: 1;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 10px;
+    }
+    .head-dialog small{
+        display: none;
+    }
+}

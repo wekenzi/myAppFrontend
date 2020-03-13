@@ -1,0 +1,18 @@
+{
+    "Language":"اللغة",
+    "Login":{
+        "email":"البريد الالكتروني",
+        "emailValidation1":"البريد الالكتروني مطلوب",
+        "emailValidation2":"يجب أن يكون البريد الإلكتروني صالح",
+        "password":"كلمة المرور",
+        "passwordValidation1":"كلمة المرور مطلوبة",
+        "passwordValidation2":"يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+        "name":"الاسم",
+        "nameValidation":"الاسم مطلوب",
+        "remember":"تذكرني",
+        "loginBtn":"تسجيل الدخول",
+        "haveAccount":"هل لديك حساب؟",
+        "register":"التسجيل",
+        "forgetPassword":"نسيت كلمة المرور"
+    }
+}

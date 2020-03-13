@@ -1,0 +1,47 @@
+.main-toolbar{
+    background-color: #1e88e5;
+    color: #fff;
+    box-shadow: 1px 0 10px rgba(0,0,0,.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+.sidenav-container{
+    margin-top: 64px;
+    height: calc(100vh - 64px);
+    background-color: #eef5f9;
+}
+.sidenav{
+    box-shadow: 1px 0 20px rgba(0,0,0,.08)!important;
+    position: fixed;
+    top: 64px;
+    z-index: 999;
+    width: 210px;
+}
+.sidenav button{
+    width: 100%;
+    color: #8f999e;
+    font-size: 15px;
+    height: 44px;
+}
+.account{
+    font-size:30px;
+    width: auto !important;
+    height: auto !important;
+}
+.page-content{
+    padding: 15px;
+}
+/* Resposive Media Query */
+@media all and (max-width: 599px){
+    .sidenav-container{
+        margin-top: 56px;
+    }
+    .sidenav{
+        top: 56px;
+    }
+    .page-content{
+        padding: 0;
+    }
+}

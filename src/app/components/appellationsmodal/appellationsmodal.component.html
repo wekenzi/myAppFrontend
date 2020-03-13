@@ -1,0 +1,21 @@
+<div *ngIf="!loadingOverlay">
+  <mat-dialog-content>
+    <mat-form-field class="w-100">
+      <input matInput placeholder="Name" autocomplete="off" (keyup)="nameError=false;" [(ngModel)]="currentAppellation.name">
+      <button mat-button class="selecet-close-text" *ngIf="currentAppellation.name" matSuffix mat-icon-button aria-label="Clear" (click)="currentAppellation.name=null">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <span class="text-danger" *ngIf="nameError">Please type name</span> 
+    <mat-form-field class="w-100">
+      <textarea matInput placeholder="Description" style="resize:none;" rows="4" autocomplete="off" [(ngModel)]="currentAppellation.desc"></textarea>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions class="justify-content-end">
+    <button mat-button  (click)="cancel()" tabindex="-1">Cancel</button>
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
+  </mat-dialog-actions>
+</div>
+<!-- Loading Overlay -->
+<div class="lds-hourglass" *ngIf="loadingOverlay"></div>
+<!-- ================ -->

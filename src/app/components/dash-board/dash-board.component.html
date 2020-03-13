@@ -1,0 +1,26 @@
+<div class="page-content">
+  <!-- Loading Overlay -->
+  <app-loadingoverlay *ngIf="loadingOverlay"></app-loadingoverlay>
+  <!-- ================ -->
+  <div class="main-wrapper" *ngIf="!loadingOverlay">
+    <!-- First Sectoin -->
+    <div class="first-section">
+      <div class="row no-gutters">
+        <div class="col-lg-3 col-sm-6" *ngFor="let data of firstSectionData">
+          <mat-card>
+            <mat-card-content class="d-flex">
+              <button class="mr-2" [ngStyle]="{ backgroundColor: data.background }" mat-icon-button>
+                <mat-icon>{{ data.icon }}</mat-icon>
+              </button>
+              <div>
+                <h3 class="m-0">{{ data.count }}</h3>
+                <h6 class="m-0 mt-1">{{ data.text }}</h6>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+    <!-- ============== -->
+  </div>
+</div>

@@ -1,1 +1,71 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+html{
+    height: 100%;
+}
+body { 
+    margin: 0; 
+    font-family: 'Roboto', sans-serif;
+}
+h1,h2,h3,h4,h5,h6,p{
+    color: #000000de;
+}
+.cur{
+    cursor: pointer!important;
+}
+h3{
+    font-size: 21px;
+}
+h6{
+    font-size: 14px;
+}
+.drop-down-account{
+    width: 150px;
+}
+.active{
+    background: #26c6da!important;
+    color: #fff!important;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12)!important;
+}
+mat-card{
+    box-shadow: 0 5px 20px rgba(0,0,0,.05)!important;
+    margin: 15px;
+    padding: 0!important;
+}
+mat-card-content{
+    padding: 24px;
+}
+.mat-card-content, .mat-card-subtitle{
+    font-size: 14px;
+}
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+}
+.mat-form-field-flex:hover .selecet-close , .mat-form-field-flex:hover .selecet-close-text{
+    display: block;
+}
+.mat-tab-label, .mat-tab-link{
+    font-size: 16px;
+}
+
+
+/*RTL Style*/
+body[style="direction: rtl;"] .mat-checkbox-inner-container{
+    margin-right: 0px;
+    margin-left: 8px;
+}
+body[style="direction: rtl;"] .mat-form-field{
+    text-align: right;
+}
+body[style="direction: rtl;"] .emp-menu-btn{
+    right: unset;
+    left: 5px;
+}
+body[style="direction: rtl;"] .mat-dialog-container{
+    direction: rtl;
+}
+/* Responsive Media Query */
+@media all and (max-width: 599px){
+    
+}

@@ -1,0 +1,137 @@
+<div class="page-content">
+  <!-- List -->
+  <div class="list" *ngIf="listShow">
+    <div class="page-header">
+      <h2 class="m-0">Projects List</h2>
+      <button mat-raised-button class="d-none d-md-block px-5" color="primary" (click)="addProject()">Add Project</button>
+      <button mat-mini-fab class="d-md-none" color="primary" (click)="addProject()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div class="search-container">
+      <input class="form-control" type="text" placeholder="search" [(ngModel)]="searchFilter">
+    </div>
+    <!-- Loading Overlay -->
+    <app-loadingoverlay *ngIf="loadingOverlay"></app-loadingoverlay>
+    <!-- ================ -->
+    <!-- No Data Message -->
+    <app-nodata *ngIf="!loadingOverlay && projects.length == 0"></app-nodata>
+    <!-- ================ -->
+    <div class="content" *ngIf="!loadingOverlay && projects.length > 0">
+      <div class="row no-gutters">
+        <div class="col-xl-6" *ngFor="let project of projects | search:searchFilter">
+          <mat-card>
+            <mat-card-content>
+              <div class="row no-gutters">
+                <div class="col-6">
+                  <div class="d-sm-flex align-items-center">
+                    <mat-card-title class="mb-0 mr-2">{{ project.name }}</mat-card-title>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <mat-card-subtitle class="m-0 h-100 d-flex justify-content-end emps-badge">
+                      <mat-chip-list><mat-chip class="emps" color="primary" selected>{{ project.freelancers.length  }} freelancers</mat-chip></mat-chip-list> 
+                  </mat-card-subtitle>
+                </div>
+              </div>
+              <button class="emp-menu-btn" mat-icon-button [matMenuTriggerFor]="projectMenu">
+                <mat-icon>menu</mat-icon>
+              </button>
+              <mat-menu xPosition='before' #projectMenu="matMenu">
+                <button mat-menu-item class="pr-5" (click)="editItem(project._id)">
+                  <mat-icon>edit</mat-icon>
+                  <span>Edit</span>
+                </button>
+                <button mat-menu-item class="pr-5 text-danger" (click)="deleteItem(project._id)">
+                  <mat-icon class="text-danger">delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+              <hr class="my-1" *ngIf="project.desc">
+              <p class="m-0" style="font-size: 16px;">
+                  {{ project.desc }}
+              </p>
+            </mat-card-content>  
+          </mat-card>
+        </div>
+      </div>  
+    </div>
+  </div>
+  <!-- =========== -->
+  <div class="operations" *ngIf="!listShow">
+    <div class="page-header">
+      <h2 class="m-0">Add Project</h2>
+      <button mat-raised-button class="d-none d-md-block px-5" color="primary" (click)="backToList()">Back to list</button>
+      <button mat-mini-fab class="d-md-none" color="primary" (click)="backToList()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+    <!-- Loading Overlay -->
+    <app-loadingoverlay *ngIf="loadingOverlay"></app-loadingoverlay>
+    <!-- ================ -->
+    <div class="content" *ngIf="currentProject && !loadingOverlay">
+      <mat-card>
+        <mat-card-content>
+          <!-- Form Add , Edit -->
+          <div class="form">
+            <div class="row">
+              <div class="form-group col-sm-4">
+                <mat-form-field class="w-100">
+                  <input matInput placeholder="Project name" autocomplete="off" (keyup)="nameError=false;" [(ngModel)]="currentProject.name">
+                  <button mat-button class="selecet-close-text" *ngIf="currentProject.name" matSuffix mat-icon-button aria-label="Clear" (click)="currentProject.name=null">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+                <span class="text-danger" *ngIf="nameError">Please type name</span>
+              </div>
+              <div class="form-group col-sm-4">
+                <mat-form-field class="w-100">
+                  <mat-label>Duration</mat-label>
+                  <mat-select [(ngModel)]="currentProject.duration" (selectionChange)="durationError=false;">
+                    <mat-option value="0">
+                      Less than 3 days
+                    </mat-option>
+                    <mat-option value="1">
+                      Less than week
+                    </mat-option>
+                    <mat-option value="2">
+                      Less than month
+                    </mat-option>
+                    <mat-option value="3">
+                      Less than 3 months
+                    </mat-option>
+                    <mat-option value="3">
+                      More than 3 months
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <span class="text-danger" *ngIf="durationError">Please choose duration</span>
+              </div>
+              <div class="form-group col-sm-4 text-center">
+                <div class="d-flex mb-2">
+                  <button 
+                    class="m-auto mb-2" mat-raised-button color="primary"
+                    matBadge="{{currentProject.freelancers.length}}" matBadgePosition="after" matBadgeColor="warn" 
+                    [matBadgeHidden]="false" (click)="openFreelancersModal()">
+                    Assign Freelancers
+                  </button>
+                </div>
+                <span class="text-danger" *ngIf="freelancersError">Please choose freelancers</span>
+              </div>
+              <div class="form-group col-sm-8">
+                <mat-form-field class="w-100">
+                  <textarea matInput placeholder="Description" style="resize:none;" rows="4" autocomplete="off" [(ngModel)]="currentProject.desc"></textarea>
+                </mat-form-field>
+              </div>
+              <div class="form-group col-12 mt-5 text-center">
+                <button mat-raised-button class="submit-btn" color="primary" (click)="submitShift()">Submit<mat-icon class="ml-2">send</mat-icon></button>
+              </div>
+            </div>
+          </div>
+          <!-- =============== -->
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <!-- ============ -->
+</div>

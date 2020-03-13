@@ -1,0 +1,20 @@
+<div *ngIf="!loadingOverlay">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()">
+    <mat-form-field class="d-block">
+      <input matInput placeholder="Name" formControlName="regName" autocomplete="off">
+      <mat-error *ngIf="r.regName.errors && r.regName.errors.required">Name is required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="d-block">
+      <input matInput placeholder="Email" formControlName="regEmail" autocomplete="off">
+      <mat-error *ngIf="r.regEmail.errors && r.regEmail.errors.required">Email is required</mat-error>
+      <mat-error *ngIf="r.regEmail.errors && r.regEmail.errors.email">Email must be a valid email address</mat-error>
+    </mat-form-field>
+  </form>
+  <mat-dialog-actions class="justify-content-end">
+    <button mat-button  (click)="cancel()" tabindex="-1">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="r.regName.errors || r.regEmail.errors" (click)="onSubmit()">Save</button>
+  </mat-dialog-actions>
+</div>
+<!-- Loading Overlay -->
+<div class="lds-hourglass" *ngIf="loadingOverlay"></div>
+<!-- ================ -->

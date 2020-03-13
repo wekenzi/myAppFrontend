@@ -1,0 +1,18 @@
+{
+    "Language":"Language",
+    "Login":{
+        "email":"Email",
+        "emailValidation1":"Email is required",
+        "emailValidation2":"Email must be a valid email account",
+        "password":"Password",
+        "passwordValidation1":"Password is required",
+        "passwordValidation2":"Password must be at least 8 characters",
+        "name":"Name",
+        "nameValidation":"Name is required",
+        "remember":"Remember me",
+        "loginBtn":"Login",
+        "haveAccount":"Have an account?",
+        "register":"Register",
+        "forgetPassword":"Forget password"
+    }
+}
