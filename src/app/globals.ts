@@ -1,5 +1,6 @@
 export const Globals = {
-    Url:'http://localhost:3000/'
+    // Url:'http://localhost:3000/'
+    Url:'https://wekeapp.herokuapp.com/'   
 }
 
 export function GetTime(date:Date){
