@@ -6,13 +6,15 @@ import { MainBoardComponent } from 'src/app/components/main-board/main-board.com
 import { DashBoardComponent } from 'src/app/components/dash-board/dash-board.component';
 import { FreelancersComponent } from 'src/app/components/freelancers/freelancers.component';
 import { ProjectsComponent } from 'src/app/components/projects/projects.component';
-import { PaymentsComponent } from './components/payments/payments.component';
-import { AppellationsComponent } from './components/appellations/appellations.component';
+import { PaymentsComponent } from 'src/app/components/payments/payments.component';
+import { AppellationsComponent } from 'src/app/components/appellations/appellations.component';
+import { EmailConfirmComponent } from 'src/app/components/email-confirm/email-confirm.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'm/dashboard', pathMatch: 'full' , canActivate: [AuthGuard]},
   {path: 'm', redirectTo: 'm/dashboard', pathMatch: 'full'},
   {path: 'login', component:LoginComponent},
+  {path: 'confirm/:toekn/:email', component:EmailConfirmComponent},
   {path: 'm', component:MainBoardComponent,canActivate: [AuthGuard], children:[
 
     {path: 'dashboard', component:DashBoardComponent},

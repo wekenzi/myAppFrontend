@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from 'src/app/services/dashboard.service';
-import { Dashboard } from 'src/app/classes/dashboard';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -11,7 +10,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class DashBoardComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
-  constructor(private dashboardService:DashboardService,) { }
+  constructor(private dashboardService:DashboardService) { }
 
   loadingOverlay=true;
   firstSectionData=[

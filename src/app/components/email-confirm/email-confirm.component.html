@@ -1,0 +1,9 @@
+<!-- Loading Overlay -->
+<app-loadingoverlay *ngIf="loadingOverlay"></app-loadingoverlay>
+<!-- ================ -->
+<div class="alert alert-success" *ngIf="loadingOverlay && success" role="alert">
+  Congratulations, you will be redirected to login page in 4 seconds.
+</div>
+<div class="alert alert-danger" *ngIf="loadingOverlay && failed" role="alert">
+  Something went wrong!, please try again.
+</div>

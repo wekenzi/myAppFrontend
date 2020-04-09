@@ -28,6 +28,7 @@ import { CurrencyService } from './services/currency.service';
 import { PaymentService } from './services/payment.service';
 import { ProfileService } from './services/profile.service';
 import { StoreService } from './services/store.service';
+import { EmailConfirmService } from './services/email-confirm.service';
 
 // Translation
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
@@ -49,6 +50,7 @@ import { FreelancersmodalComponent } from './components/freelancersmodal/freelan
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ProfilemodalComponent } from './components/profilemodal/profilemodal.component';
 import { SearchPipe } from './pipes/search.pipe';
+import { EmailConfirmComponent } from './components/email-confirm/email-confirm.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -71,7 +73,8 @@ export function createTranslateLoader(http: HttpClient) {
     FreelancersmodalComponent,
     ProjectsComponent,
     ProfilemodalComponent,
-    SearchPipe
+    SearchPipe,
+    EmailConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -98,7 +101,7 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [
     AuthGuard,
     AuthService,ServiceService,ProjectService,GenerallistsService,StoreService,DashboardService
-    ,NationalityService,CurrencyService,PaymentService,FreelancerService,ProfileService,
+    ,NationalityService,CurrencyService,PaymentService,FreelancerService,ProfileService,EmailConfirmService,
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
   ],
