@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   // Login Things
   loginForm: FormGroup;
   remember=false;
+  loadingOverlay=false;
 
   // Register Things
   registerForm: FormGroup;
@@ -90,6 +91,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
         return;
     }
+    this.loadingOverlay = true;
     this.auth.GetTokenFromServer(this.loginForm.get('email').value,this.loginForm.get('password').value)
     .pipe(takeUntil(this.destroy$))
     .subscribe((data:any)=>{
@@ -107,6 +109,7 @@ export class LoginComponent implements OnInit {
     },err=>{
       console.log(err);
       this.toastr.error(err.error.message, 'Failed');
+      this.loadingOverlay = false;
     })
   }
 
@@ -116,15 +119,18 @@ export class LoginComponent implements OnInit {
     if (this.registerForm.invalid) {
         return;
     }
+    this.loadingOverlay = true;
     this.auth.Register(this.registerForm.get('regName').value,this.registerForm.get('regEmail').value,this.registerForm.get('regPassword').value)
     .pipe(takeUntil(this.destroy$))
     .subscribe((data:any)=>{
       console.log(data);
       this.toastr.success('Welcome', 'Success');
       this.showLoginFunc();
+      this.loadingOverlay = false;
     },err=>{
       console.log(err);
       this.toastr.error(err.error.message, 'Failed');
+      this.loadingOverlay = false;
     })
   }
 

@@ -1,4 +1,7 @@
-<div class="login-page">
+<!-- Loading Overlay -->
+<app-loadingoverlay *ngIf="loadingOverlay"></app-loadingoverlay>
+<!-- ================ -->
+<div class="login-page" *ngIf="!loadingOverlay">
   <!-- Language Section -->
   <div class="form-group login-box row no-gutters">
     <label class="col-sm-6 col-form-label" for="lang">{{ 'Language' | translate }}</label>
