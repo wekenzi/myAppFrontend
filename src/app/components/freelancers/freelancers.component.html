@@ -121,7 +121,7 @@
               </div>
               <div class="form-group col-sm-4">
                 <mat-form-field class="w-100">
-                  <input matInput placeholder="Days in week" type="number" min="1" max="7" maxlength="1" autocomplete="off" (keypress)="onlyArrows($event)" (keyup)="workingDaysError=false;" [(ngModel)]="currentFreelancer.workingDays">
+                  <input matInput placeholder="Days in week" type="number" min="1" max="7" maxlength="1" autocomplete="off" (keypress)="onlyNumbers($event)" (keyup)="workingDaysError=false;" [(ngModel)]="currentFreelancer.workingDays">
                 </mat-form-field>
                 <span class="text-danger" *ngIf="workingDaysError">Please set Days in week</span>
               </div>
@@ -136,7 +136,7 @@
               </div>
               <div class="form-group col-sm-4">
                 <mat-form-field class="w-100">
-                  <input matInput placeholder="Hours per day" type="number" min="1" max="22" maxlength="2" autocomplete="off" (keypress)="onlyArrows($event)" (keyup)="HPDError=false;" [(ngModel)]="currentFreelancer.HPD">
+                  <input matInput placeholder="Hours per day" type="number" min="1" max="22" maxlength="2" autocomplete="off" (keypress)="onlyNumbers($event)" (keyup)="HPDError=false;" [(ngModel)]="currentFreelancer.HPD">
                 </mat-form-field>
                 <span class="text-danger" *ngIf="HPDError">Please set hours per day</span>
               </div>
